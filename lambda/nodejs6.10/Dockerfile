@@ -1,6 +1,8 @@
-FROM node:6.10
+FROM circleci/node:6.10.3
 
 ENV YARN_VERSION 1.3.2
+
+USER root
 
 RUN set -ex \
   && for key in \
@@ -15,3 +17,5 @@ RUN set -ex \
   && gpg --batch --verify yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
   && tar -xzf yarn-v$YARN_VERSION.tar.gz -C /opt/yarn --strip-components=1 \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
+
+USER circleci
