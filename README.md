@@ -22,5 +22,3 @@ Example: `docker build lambda/nodejs6.10`
 All changes on `master` branch will be auto-deployed to Docker Hub and tagged with `latest`
 
 You start the container with a terminal by running `docker run -i -t <container name> /bin/bash`
-
-To make changes to DockerHub account, create an account and ask another developer to add you the Chain.io organization, or see EC2 SSM for admin@chain.io credentials
