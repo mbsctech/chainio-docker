@@ -18,4 +18,8 @@ RUN set -ex \
   && tar -xzf yarn-v$YARN_VERSION.tar.gz -C /opt/yarn --strip-components=1 \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
+RUN sudo apt-get update
+RUN sudo apt-get install python-pip python-dev jq
+RUN sudo pip install awscli
+
 USER circleci
