@@ -12,6 +12,11 @@ Intended to be used by CI for services running on AWS Lambda
 
 Contains Node 6.10.3 and a current / stable version of [Yarn](https://yarnpkg.com/en/)
 
+`chainio/sphinx-docs`
+
+Intended for Continuous Deployment of sphinx based websites to AWS
+
+Contains Python 3, AWS CLI and [Sphinx](http://www.sphinx-doc.org/en/stable/)
 
 ### Making changes
 
