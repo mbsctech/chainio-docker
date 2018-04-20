@@ -1,6 +1,6 @@
 FROM circleci/node:6.10.3
 
-ENV YARN_VERSION 1.3.2
+ENV YARN_VERSION 1.6.0
 
 USER root
 
@@ -21,5 +21,7 @@ RUN set -ex \
 RUN sudo apt-get update
 RUN sudo apt-get install python-pip python-dev jq
 RUN sudo pip install awscli
+
+RUN yarn global add serverless@1.26
 
 USER circleci
