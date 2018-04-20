@@ -10,7 +10,10 @@ Public Docker Images to support Chain.io
 
 Intended to be used by CI for services running on AWS Lambda
 
-Contains Node 6.10.3 and a current / stable version of [Yarn](https://yarnpkg.com/en/)
+- Node 6.10.3
+- Current / Stable version of Yarn
+- AWS CLI
+- [Serverless Framework](https://serverless.com/) for Deployment purposes
 
 `chainio/sphinx-docs`
 
