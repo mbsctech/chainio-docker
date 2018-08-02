@@ -22,6 +22,6 @@ RUN sudo apt-get update
 RUN sudo apt-get install python-pip python-dev jq
 RUN sudo pip install awscli
 
-RUN yarn global add serverless@1.26
+RUN yarn global add serverless@1.29
 
 USER circleci
