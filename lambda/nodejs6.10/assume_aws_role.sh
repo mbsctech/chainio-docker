@@ -8,7 +8,3 @@ temp_role=$(AWS_ACCESS_KEY_ID=$MASTER_AWS_KEY_ID AWS_SECRET_ACCESS_KEY=$MASTER_A
 export AWS_ACCESS_KEY_ID=$(echo $temp_role | jq .Credentials.AccessKeyId | xargs)
 export AWS_SECRET_ACCESS_KEY=$(echo $temp_role | jq .Credentials.SecretAccessKey | xargs)
 export AWS_SESSION_TOKEN=$(echo $temp_role | jq .Credentials.SessionToken | xargs)
-
-echo "SET KEYS ${temp_role}"
-echo "ACCESS_KEY_ID"
-echo $AWS_ACCESS_KEY_ID
