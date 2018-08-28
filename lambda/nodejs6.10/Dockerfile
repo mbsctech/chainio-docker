@@ -24,4 +24,7 @@ RUN sudo pip install awscli
 
 RUN yarn global add serverless@1.29
 
+ADD assume_aws_role.sh /usr/local/bin/assume_aws_role
+RUN chmod +x /usr/local/bin/assume_aws_role
+
 USER circleci
