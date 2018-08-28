@@ -1,12 +1,12 @@
-## Chain.io Docker Images
+# Chain.io Docker Images
 
 Public Docker Images to support Chain.io
 
 [DockerHub](https://hub.docker.com/r/chainio)
 
-### Images
+## Images
 
-`chainio/lambda-ci-nodejs6.10`:
+### chainio/lambda-ci-nodejs6.10:
 
 Intended to be used by CI for services running on AWS Lambda
 
@@ -15,13 +15,28 @@ Intended to be used by CI for services running on AWS Lambda
 - AWS CLI
 - [Serverless Framework](https://serverless.com/) for Deployment purposes
 
-`chainio/sphinx-docs`
+#### Assuming AWS roels:
+
+This image contains a script for assuming AWS Roles
+
+It can be called like `source assume_aws_role`
+
+The following environment variables must be set for it to work
+
+- CHAINIO_ENV (environment to deploy to)
+- MASTER_AWS_KEY_ID (AWS_ACCESS_KEY_ID for master account)
+- MASTER_AWS_SECRET (AWS_SECRET_ACCESS_KEY for master account)
+- <environment>_role_arn (Role ARN to assume.  IE "dev_role_arn")
+
+It will automatically set AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID, and AWS_SESSION_TOKEN with the requested temporary credentials for the apprpriate environment
+
+### chainio/sphinx-docs
 
 Intended for Continuous Deployment of sphinx based websites to AWS
 
 Contains Python 2, AWS CLI and [Sphinx](http://www.sphinx-doc.org/en/stable/)
 
-### Making changes
+## Making changes
 
 To test locally use `docker build <Dockerfile path>`
 
