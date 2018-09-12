@@ -6,11 +6,11 @@ Public Docker Images to support Chain.io
 
 ## Images
 
-### chainio/lambda-ci-nodejs6.10:
+### chainio/lambda-ci-nodejs8.10:
 
 Intended to be used by CI for services running on AWS Lambda
 
-- Node 6.10.3
+- Node 8.10.0
 - Current / Stable version of Yarn
 - AWS CLI
 - [Serverless Framework](https://serverless.com/) for Deployment purposes
@@ -29,6 +29,10 @@ The following environment variables must be set for it to work
 - <environment>_role_arn (Role ARN to assume.  IE "dev_role_arn")
 
 It will automatically set AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID, and AWS_SESSION_TOKEN with the requested temporary credentials for the apprpriate environment
+
+### chainio/lambda-ci-nodejs6.10:
+
+Same as above but for Node v6.10.3
 
 ### chainio/sphinx-docs
 
