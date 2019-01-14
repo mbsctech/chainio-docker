@@ -1,6 +1,6 @@
 FROM circleci/node:6.10.3
 
-ENV YARN_VERSION 1.6.0
+ENV YARN_VERSION 1.13.0
 
 USER root
 
@@ -22,7 +22,7 @@ RUN sudo apt-get update
 RUN sudo apt-get install python-pip python-dev jq
 RUN sudo pip install awscli
 
-RUN yarn global add serverless@1.29
+RUN yarn global add serverless@1.36
 
 ADD assume_aws_role.sh /usr/local/bin/assume_aws_role
 RUN chmod +x /usr/local/bin/assume_aws_role
