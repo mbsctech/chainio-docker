@@ -1,6 +1,6 @@
 FROM circleci/node:6.10.3
 
-ENV YARN_VERSION 1.6.0
+ENV YARN_VERSION 1.13.0
 
 USER root
 

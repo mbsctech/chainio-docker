@@ -2,7 +2,7 @@ FROM circleci/node:8.10
 
 USER root
 
-ENV YARN_VERSION 1.9.4
+ENV YARN_VERSION 1.13.0
 
 RUN set -ex \
   && for key in \
