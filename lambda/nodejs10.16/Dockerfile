@@ -25,7 +25,7 @@ RUN sudo apt-get update
 RUN sudo apt-get install python-pip python-dev jq
 RUN sudo pip install awscli
 
-RUN yarn global add serverless@1.36
+RUN yarn global add serverless@1.59.1
 
 ADD assume_aws_role.sh /usr/local/bin/assume_aws_role
 RUN chmod +x /usr/local/bin/assume_aws_role
