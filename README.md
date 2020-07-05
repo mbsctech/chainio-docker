@@ -6,6 +6,15 @@ Public Docker Images to support Chain.io
 
 ## Images
 
+### chainio/lambda-ci-nodejs12.18:
+
+Intended to be used by CI for services running on AWS Lambda
+
+- Node 12.18.2
+- Current / Stable version of Yarn
+- AWS CLI
+- [Serverless Framework](https://serverless.com/) for Deployment purposes
+
 ### chainio/lambda-ci-nodejs10.16:
 
 Intended to be used by CI for services running on AWS Lambda
