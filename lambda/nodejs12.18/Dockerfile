@@ -4,6 +4,8 @@ USER root
 
 ENV YARN_VERSION 1.19.1
 
+RUN mkdir ~/.gnupg
+RUN echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
 RUN set -ex \
   && for key in \
   6A010C5166006599AA17F08146C2130DFD2497F5 \
