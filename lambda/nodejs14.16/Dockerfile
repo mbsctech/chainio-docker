@@ -1,4 +1,4 @@
-FROM cimg/node:14.7.0
+FROM cimg/node:14.16.1
 
 USER root
 
@@ -24,7 +24,7 @@ RUN set -ex \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
 RUN sudo apt-get update
-RUN sudo apt-get install python-pip python-dev jq
+RUN sudo apt-get install python3-pip python-dev jq
 RUN sudo pip install awscli
 
 RUN yarn global add serverless@1.83.2
