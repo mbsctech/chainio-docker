@@ -7,7 +7,7 @@ Public Docker Images to support Chain.io
 ## Images
 
 
-### chainio/lambda-ci-nodejs14.7.0:
+### chainio/lambda-ci-nodejs14.16:
 
 Intended to be used by CI for services running on AWS Lambda
 
