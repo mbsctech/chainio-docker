@@ -26,6 +26,7 @@ RUN set -ex \
 RUN sudo apt-get update
 RUN sudo apt-get install python3-pip python-dev jq
 RUN sudo pip install awscli
+RUN sudo pip install aws-sam-cli
 
 RUN yarn global add serverless@1.83.2
 
