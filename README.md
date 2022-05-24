@@ -6,6 +6,14 @@ Public Docker Images to support Chain.io
 
 ## Images
 
+### chainio/lambda-ci-nodejs16.15:
+
+Intended to be used by CI for services running on AWS Lambda
+
+- Node 14.16
+- Current / Stable version of Yarn
+- AWS CLI
+- [Serverless Framework](https://serverless.com/) 3.18 for Deployment purposes
 
 ### chainio/lambda-ci-nodejs14.16:
 
@@ -75,6 +83,6 @@ To test locally use `docker build <Dockerfile path>`
 
 Example: `docker build lambda/nodejs6.10`
 
-All changes on `master` branch will be auto-deployed to Docker Hub and tagged with `latest`
+You must manually use docker login & push to push to dockerhub.
 
 You start the container with a terminal by running `docker run -i -t <container name> /bin/bash`
