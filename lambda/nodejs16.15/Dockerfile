@@ -1,8 +1,11 @@
-FROM cimg/node:16.15
+FROM cimg/node:16.15.1
 
 USER root
 
 ENV YARN_VERSION 1.22.5
+
+# symlink to fix missing node and npm links
+RUN sudo ln -s "/home/circleci/.nvm/versions/node/v16.15.1/bin/node" "/usr/local/bin/node" && sudo ln -s "/home/circleci/.nvm/versions/node/v16.15.1/bin/npm" "/usr/local/bin/npm"
 
 RUN mkdir ~/.gnupg
 RUN echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
