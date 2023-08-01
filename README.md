@@ -86,3 +86,20 @@ Example: `docker build lambda/nodejs6.10`
 You must manually use docker login & push to push to dockerhub.
 
 You start the container with a terminal by running `docker run -i -t <container name> /bin/bash`
+
+
+# Deployment
+
+Login as `chainioadmin`:
+
+`docker login -u chainioadmin`
+
+You can find the credentials in lastpass if it is shared with you.
+
+First build the image via docker build:
+
+eg: `docker build lambda/nodejs16.20 -t chainio/lambda-ci-nodejs16.20`
+
+Then push the image to docker hub:
+
+`docker push chainio/lambda-ci-nodejs16.20`
