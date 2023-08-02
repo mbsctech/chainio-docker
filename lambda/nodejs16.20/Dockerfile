@@ -12,7 +12,6 @@ RUN sudo apt-get install python3-pip
 RUN sudo pip install awscli aws-sam-cli
 
 
-ADD assume_aws_role.sh /usr/local/bin/assume_aws_role
-RUN chmod +x /usr/local/bin/assume_aws_role
+COPY --chmod=755 assume_aws_role.sh /usr/local/bin/assume_aws_role
 
 USER circleci
