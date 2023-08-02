@@ -2,8 +2,7 @@ FROM cimg/node:16.20
 
 USER root
 
-RUN mkdir ~/.gnupg
-RUN echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
+RUN mkdir ~/.gnupg && echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
 
 RUN sudo apt-get update
 
