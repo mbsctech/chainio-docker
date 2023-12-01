@@ -6,7 +6,7 @@ RUN mkdir ~/.gnupg && echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
 
 RUN sudo apt-get update
 
-RUN yarn global add serverless@3.33.0
+RUN yarn global add serverless@3.38.0
 
 RUN sudo apt-get install python3-pip
 RUN sudo pip install awscli aws-sam-cli
