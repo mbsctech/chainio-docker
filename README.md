@@ -116,8 +116,14 @@ You can find the credentials in lastpass if it is shared with you.
 
 First build the image via docker build:
 
-eg: `docker build lambda/nodejs16.20 -t chainio/lambda-ci-nodejs16.20`
+eg: `docker build lambda/nodejs20.9 -t chainio/lambda-ci-nodejs20.9`
 
 Then push the image to docker hub:
 
-`docker push chainio/lambda-ci-nodejs16.20`
+`docker push chainio/lambda-ci-nodejs20.9`
+
+For an arm version:
+`docker buildx build --platform linux/arm64 lambda/nodejs20.9 -t chainio/lambda-ci-nodejs20.9-arm64`
+
+Then push the image to docker hub:
+`docker push chainio/lambda-ci-nodejs20.9-arm64`
