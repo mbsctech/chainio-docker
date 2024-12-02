@@ -6,6 +6,15 @@ Public Docker Images to support Chain.io
 
 ## Images
 
+### chainio/lambda-ci-nodejs22.11:
+
+Intended to be used by CI for services running on AWS Lambda
+
+- Node 22.11
+- Yarn 1.22.22
+- AWS CLI
+- [OSS Serverless Framework](https://github.com/oss-serverless/serverless) 3.43 for Deployment purposes
+
 ### chainio/lambda-ci-nodejs20.9:
 
 Intended to be used by CI for services running on AWS Lambda
@@ -13,7 +22,7 @@ Intended to be used by CI for services running on AWS Lambda
 - Node 20.9
 - Current / Stable version of Yarn
 - AWS CLI
-- [Serverless Framework](https://serverless.com/) 3.33 for Deployment purposes
+- [Serverless Framework](https://serverless.com/) 3.38 for Deployment purposes
 
 ### chainio/lambda-ci-nodejs18.16:
 
@@ -97,9 +106,9 @@ Contains Python 2, AWS CLI and [Sphinx](http://www.sphinx-doc.org/en/stable/)
 
 ## Making changes
 
-To test locally use `docker build <Dockerfile path>`
+To test locally, change to directory with Dockerfile and run `docker build . -t nodejs<version>`
 
-Example: `docker build lambda/nodejs6.10`
+Example: `cd lambda/nodejs22.10 && docker build . -t nodejs22.10`
 
 You must manually use docker login & push to push to dockerhub.
 
@@ -114,15 +123,16 @@ Login as `chainioadmin`:
 
 You can find the credentials in lastpass if it is shared with you.
 
-First build the image via docker build:
+First build the image via docker build.  Because of the differences in platforms between different
+Mac processors, use the platform flags to ensure the platforms are consistent.
 
-eg: `docker build lambda/nodejs20.9 -t chainio/lambda-ci-nodejs20.9`
+`docker buildx build --platform linux/amd64 lambda/nodejs20.9 -t chainio/lambda-ci-nodejs20.9-amd64`
 
 Then push the image to docker hub:
 
 `docker push chainio/lambda-ci-nodejs20.9`
 
-For an arm version:
+For the arm version:
 `docker buildx build --platform linux/arm64 lambda/nodejs20.9 -t chainio/lambda-ci-nodejs20.9-arm64`
 
 Then push the image to docker hub:
