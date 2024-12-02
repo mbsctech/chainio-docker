@@ -6,7 +6,7 @@ role_env_name=${CHAINIO_ENV}_role_arn
 
 [ -z "${!role_env_name}" ] && echo "Missing environment variable $role_env_name to deploy to $CHAINIO_ENV" && exit 1;
 
-unset  AWS_SESSION_TOKEN
+unset AWS_SESSION_TOKEN
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
 
