@@ -8,7 +8,7 @@ RUN curl -fsSL https://rpm.nodesource.com/setup_22.x | bash -
 
 # jq and findutils (xargs) are used in the assume_aws_role.sh copied
 # into the build below
-RUN dnf install -y unzip python3-pip nodejs jq findutils gzip tar git \
+RUN dnf install -y unzip python3-pip nodejs jq findutils gzip tar git make gcc-c++ \
     && dnf clean all \
     && npm install -g yarn@1 \
     # Use osls fork instead of serverless due to serverless v4 issues

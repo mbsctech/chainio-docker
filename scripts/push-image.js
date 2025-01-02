@@ -8,6 +8,16 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { spawnSync } = require('node:child_process')
 
+const validPlatforms = (platforms) => {
+  for (const platform of platforms) {
+    if (!['linux/amd64', 'linux/arm64'].includes(platform)) {
+      return false
+    }
+  }
+
+  return true
+}
+
 let dryRun
 const isDryRun = () => {
   return dryRun === true
@@ -59,7 +69,10 @@ const getArgs = () => {
   const rawPlatforms = values.platforms || 'linux/amd64, linux/arm64'
   const platforms = rawPlatforms.split(',').map(v => v.trim())
   if (!platforms.length) {
-    error('You must specify at least one platform to push.')
+    error('You must specify at least one platform to build.')
+    return
+  } else if (!validPlatforms(platforms)){
+    error(`Invalid platform specified.  Must be one or more of ${VALID_PLATFORMS.join(', ')}`)
     return
   }
 
