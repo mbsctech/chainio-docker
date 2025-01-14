@@ -6,6 +6,27 @@ Public Docker Images to support Chain.io
 
 ## Images
 
+### chainio/amazon-nodejs22
+Introduces a new set of images built from Amazon's public image set:
+
+- chainio/amazon-nodejs22-arm64
+- chainio/amazon-nodejs22-amd64
+- chainio/amazon-nodejs22-test-arm64
+- chainio/amazon-nodejs22-test-amd64
+
+The primary image is built from the Amazon Linux image and is meant to be used by the CI/CD pipeline
+to build and deploy the project.
+
+The test image is built from the public Amazon Lambda image and is solely meant to be used by the CI/CD pipeline
+to run unit test for the project.  By using the offical lambda runtime, we can better ensure compatibility
+between the test workspaces and the actual deployment platform.
+
+Includes:
+- Node 22.11
+- Yarn 1.22.22
+- AWS CLI
+- [OSS Serverless Framework](https://github.com/oss-serverless/serverless) 3.43 for Deployment purposes
+
 ### chainio/lambda-ci-nodejs22.11:
 
 Intended to be used by CI for services running on AWS Lambda
@@ -79,7 +100,7 @@ Intended to be used by CI for services running on AWS Lambda
 - AWS CLI
 - [Serverless Framework](https://serverless.com/) for Deployment purposes
 
-#### Assuming AWS roels:
+#### Assuming AWS roles:
 
 This image contains a script for assuming AWS Roles
 
@@ -106,34 +127,44 @@ Contains Python 2, AWS CLI and [Sphinx](http://www.sphinx-doc.org/en/stable/)
 
 ## Making changes
 
-To test locally, change to directory with Dockerfile and run `docker build . -t nodejs<version>`
+Typically, when createing an new image, the easiest way to do so is to copy the previous version
+to a new directory and then modify the Dockerfile(s) to update the software versions of nodejs or
+yarn, etc.
 
-Example: `cd lambda/nodejs22.10 && docker build . -t nodejs22.10`
+For the new Amazon Linux based build image, you will likely only have to adjust the nodesource URL to
+target a new nodejs version (setup_22.x, setup_23.x, etc).
 
-You must manually use docker login & push to push to dockerhub.
+For the new Amazon Lambda based test image, you should only ever have to change the source image:
+public.ecr.aws/lambda/nodejs:22, public.ecr.aws/lambda/nodejs:24, etc.
 
-You start the container with a terminal by running `docker run -i -t <container name> /bin/bash`
+To test your builds locally, change directory to the same directory that has the Dockerfile in it
+and you can build the image with the following command (substitute <tag> for a local name to call the build):
+`docker build -t <tag> .`
 
+If your build completes, you can run it locally with: `docker run --rm <tag>`.
+If you need to debug and open a shell in the container, try: `docker run --rm -it <tag> sh`
 
 # Deployment
 
-Login as `chainioadmin`:
+As long as your build sticks to the standard placement of Dockerfiles and directory names
+as previous builds (build/test folders for amazon builds or Dockerfile in main folder for legacy build) ,
+then the easiest way to cut an official image is to simply run `yarn build --buildDir lambda/<your_build_dir>`.
+
+This will create all the necessary images for the platforms we build for and images for the individual
+build and test use cases.
+
+See the command output for the names of the images that were built.
+
+When you are ready to push the images to Docker Hub, you must login as the `chainioadmin` account:
 
 `docker login -u chainioadmin`
 
 You can find the credentials in lastpass if it is shared with you.
 
-First build the image via docker build.  Because of the differences in platforms between different
-Mac processors, use the platform flags to ensure the platforms are consistent.
+If you built the images with the `yarn build` then all you need to do to push them is to execute
+the `push` command using the build directory you intend to push as the buildDir parameter:
 
-`docker buildx build --platform linux/amd64 lambda/nodejs20.9 -t chainio/lambda-ci-nodejs20.9-amd64`
+`yarn push --buildDir lambda/<your_build_dir>`
 
-Then push the image to docker hub:
-
-`docker push chainio/lambda-ci-nodejs20.9`
-
-For the arm version:
-`docker buildx build --platform linux/arm64 lambda/nodejs20.9 -t chainio/lambda-ci-nodejs20.9-arm64`
-
-Then push the image to docker hub:
-`docker push chainio/lambda-ci-nodejs20.9-arm64`
+If you did not use the `yarn build` command, you will need to push the images you build manually.
+Don't do this unless you absolutely need to and you absolutely understand what you're doing.

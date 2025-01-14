@@ -1,0 +1,19 @@
+{
+  "name": "chainio-docker",
+  "version": "0.0.0",
+  "description": "A repository for building Chain.io docker images",
+  "repository": "git@github.com:mbsctech/chainio-docker",
+  "author": "Chain.io",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "scripts/build-image.js",
+    "push": "scripts/push-image.js"
+  },
+  "dependencies": {
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=20"
+  }
+}
