@@ -9,6 +9,27 @@ Public Docker Images to support Chain.io
 ### chainio/amazon-nodejs22
 Introduces a new set of images built from Amazon's public image set:
 
+- chainio/amazon-nodejs24-arm64
+- chainio/amazon-nodejs24-amd64
+- chainio/amazon-nodejs24-test-arm64
+- chainio/amazon-nodejs24-test-amd64
+
+The primary image is built from the Amazon Linux image and is meant to be used by the CI/CD pipeline
+to build and deploy the project.
+
+The test image is built from the public Amazon Lambda image and is solely meant to be used by the CI/CD pipeline
+to run unit test for the project.  By using the offical lambda runtime, we can better ensure compatibility
+between the test workspaces and the actual deployment platform.
+
+Includes:
+- Node 24.11
+- Yarn 1.22.22
+- AWS CLI 2.32.7
+- [OSS Serverless Framework](https://github.com/oss-serverless/serverless) 3.60 for Deployment purposes
+
+### chainio/amazon-nodejs22
+Introduces a new set of images built from Amazon's public image set:
+
 - chainio/amazon-nodejs22-arm64
 - chainio/amazon-nodejs22-amd64
 - chainio/amazon-nodejs22-test-arm64
