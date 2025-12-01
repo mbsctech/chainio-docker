@@ -6,7 +6,7 @@ Public Docker Images to support Chain.io
 
 ## Images
 
-### chainio/amazon-nodejs22
+### chainio/amazon-nodejs24
 Introduces a new set of images built from Amazon's public image set:
 
 - chainio/amazon-nodejs24-arm64
