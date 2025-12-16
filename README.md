@@ -25,7 +25,7 @@ Includes:
 - Node 24.11
 - Yarn 1.22.22
 - AWS CLI 2.32.7
-- [OSS Serverless Framework](https://github.com/oss-serverless/serverless) 3.60 for Deployment purposes
+- [OSS Serverless Framework](https://github.com/oss-serverless/serverless) 3.61 for Deployment purposes
 
 ### chainio/amazon-nodejs22
 Introduces a new set of images built from Amazon's public image set:

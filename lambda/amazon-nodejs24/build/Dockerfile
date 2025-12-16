@@ -12,7 +12,7 @@ RUN dnf install -y unzip python3-pip nodejs jq findutils gzip tar git make gcc-c
     && dnf clean all \
     && npm install -g yarn@1 \
     # Use osls fork instead of serverless due to serverless v4 issues
-    && yarn global add osls@3.60.0
+    && yarn global add osls@3.61.0
 
 # Install AWS CLI based on architecture selected
 ARG TARGETARCH
