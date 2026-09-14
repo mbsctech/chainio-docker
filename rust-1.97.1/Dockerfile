@@ -46,7 +46,17 @@ USER circleci
 RUN rustup component add rustfmt clippy
 
 # Fail the image build rather than a consumer's CI run if the toolchain or
-# the native dependencies are not actually usable.
+# the native dependencies are not actually usable. This covers every package
+# installed above: seven expose a pkg-config module, patchelf is a binary,
+# and pkg-config itself is proven by the check running at all.
 RUN cargo fmt --version \
   && cargo clippy --version \
-  && pkg-config --exists webkit2gtk-4.1 javascriptcoregtk-4.1 libsoup-3.0 gtk+-3.0 ayatana-appindicator3-0.1
+  && patchelf --version \
+  && pkg-config --exists \
+    webkit2gtk-4.1 \
+    javascriptcoregtk-4.1 \
+    libsoup-3.0 \
+    gtk+-3.0 \
+    ayatana-appindicator3-0.1 \
+    librsvg-2.0 \
+    openssl
