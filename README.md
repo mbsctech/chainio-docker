@@ -27,6 +27,41 @@ Includes:
 - AWS CLI 2.32.7
 - [OSS Serverless Framework](https://github.com/oss-serverless/serverless) 3.63.2 for Deployment purposes
 
+### chainio/rust-1.97.1
+
+Intended to be used by CI for the Linux gates (`cargo fmt`, `cargo clippy`,
+`cargo test`) of Tauri v2 desktop crates. Consumer today: the
+`windows_desktop_app_gates` job in `ai-checks`.
+
+- chainio/rust-1.97.1-amd64
+
+Includes:
+- Rust 1.97.1 (`cimg/rust`), with the `rustfmt` and `clippy` components
+- Tauri v2's Linux build dependencies — Tauri links against gtk/webkit2gtk on
+  Linux even for a crate that never bundles a Linux target, so `cargo clippy`
+  and `cargo test` cannot compile the `tauri` crate without them
+
+Like the `nodejs*` directories, the toolchain version is in the directory
+name: a new Rust version is a new directory copied from this one, which lets a
+consumer move to it deliberately rather than having its toolchain change under
+it. Two things differ from the images above, both deliberate:
+
+- **amd64 only.** The consuming CircleCI job runs on an x86 resource class and
+  there is no arm64 consumer, so the build needs `--platforms linux/amd64`.
+- **No test image**, so this is a legacy-layout directory (`Dockerfile` in the
+  main folder). That makes `yarn build` derive the legacy `lambda-ci-` name,
+  so it needs `--tagPrefix rust-1.97.1` to come out as
+  `chainio/rust-1.97.1-amd64` — these are not Lambda CI images.
+
+Because `yarn push` derives the image name from the directory only — it has no
+`--tagPrefix` option — it would look for `chainio/lambda-ci-rust-1.97.1-amd64`
+and miss the built image. **Push this one manually:**
+
+```
+yarn build --buildDir rust-1.97.1 --tagPrefix rust-1.97.1 --platforms linux/amd64
+docker push chainio/rust-1.97.1-amd64
+```
+
 ### chainio/amazon-nodejs22
 Introduces a new set of images built from Amazon's public image set:
 
